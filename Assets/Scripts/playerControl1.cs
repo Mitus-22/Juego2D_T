@@ -8,6 +8,7 @@ public class playerControl1 : MonoBehaviour
     Rigidbody2D rb;
     public int speed = 4;
     public int jump = 5;
+    public GameObject Shot;
 
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
@@ -50,6 +51,12 @@ public class playerControl1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && grounded()){
             rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
         }
+
+        //Disparo
+        if (Input.GetMouseButtonDown(0)){
+            Instantiate(Shot, transform.position + new Vector3(0, 1.5f, 1.7f), Quaternion.identity);
+        }
+
     }
 
     bool grounded(){
@@ -89,9 +96,6 @@ public class playerControl1 : MonoBehaviour
         }
    }
 
-    //Disparo
-    if (Input.GetMouseButtonDown(0)){
-        Instantiate(Shot, New Vector3(transform.position.x, transform.position.y, + 1,7f), Quaternion.identity);
-    }
+    
 
 }

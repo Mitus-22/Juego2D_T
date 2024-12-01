@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 149824069}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.67, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5290,7 +5290,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.907083, y: 0.7587998, z: -10.36}
+  m_LocalPosition: {x: -15.749535, y: 0.058799744, z: -10.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5963,7 +5963,7 @@ Transform:
   m_GameObject: {fileID: 1075575432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.907083, y: 0.7587998, z: -10.36}
+  m_LocalPosition: {x: -15.749535, y: 0.058799744, z: -10.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7892,7 +7892,7 @@ Transform:
   m_GameObject: {fileID: 1964180752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.56, y: -0.62, z: 0.038699094}
+  m_LocalPosition: {x: 1.15, y: 3.56, z: 0.038699094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8026,7 +8026,7 @@ Transform:
   m_GameObject: {fileID: 2070403904}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.42, y: -1.26, z: 0}
+  m_LocalPosition: {x: -16.42, y: -1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8047,6 +8047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   jump: 5
+  Shot: {fileID: 2956907332135675513, guid: e365c57ee80b96844b9917c45fcb69d7, type: 3}
   sprite: {fileID: 1305479983}
   anim: {fileID: 1305479984}
   lives: 3
@@ -8168,7 +8169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  endPosition: {x: 5, y: 0, z: 0}
+  endPosition: {x: 5, y: -1.08, z: 0}
   sprite: {fileID: 149824071}
 --- !u!70 &2142789934
 CapsuleCollider2D:
@@ -8216,7 +8217,7 @@ Transform:
   m_GameObject: {fileID: 2142789932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.64, y: 0, z: 0}
+  m_LocalPosition: {x: 16.64, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8237,11 +8238,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646823245811412091, guid: e365c57ee80b96844b9917c45fcb69d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.6
+      value: -19.47
       objectReference: {fileID: 0}
     - target: {fileID: 4646823245811412091, guid: e365c57ee80b96844b9917c45fcb69d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88
+      value: -13.37
       objectReference: {fileID: 0}
     - target: {fileID: 4646823245811412091, guid: e365c57ee80b96844b9917c45fcb69d7, type: 3}
       propertyPath: m_LocalPosition.z

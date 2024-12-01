@@ -10,12 +10,18 @@ public class ShotControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = Vector2.right * speed;
-        Invoke("destroyShot", 2);
+        Invoke("destroyShot", 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject);
+
     }
+
+
+    void destroyShot(){
+        Destroy(gameObject);
+   }
+
 }
