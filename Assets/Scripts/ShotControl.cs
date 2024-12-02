@@ -9,8 +9,22 @@ public class ShotControl : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = Vector2.right * speed;
+        if (playerControl1.rigth == true){
+            rb.linearVelocity = Vector2.right * speed;
+        } else {
+            rb.linearVelocity = Vector2.left * speed;
+        }
+        
         Invoke("destroyShot", 1.5f);
+    }
+
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.tag == "Enemy"){
+            Destroy(other.gameObject);
+            destroyShot();
+            
+        }
+        
     }
 
     // Update is called once per frame
