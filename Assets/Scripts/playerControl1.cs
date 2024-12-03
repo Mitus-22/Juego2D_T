@@ -25,6 +25,9 @@ public class playerControl1 : MonoBehaviour
 
     bool endGame = false;
 
+    AudioSource audioSrc;
+    [SerializeField] AudioClip sndJump, sndItem, sndShot, sndDamage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +37,7 @@ public class playerControl1 : MonoBehaviour
         txtLives.text = "Lives: " + lives;
         txtItems.text = "Items: " + items;
         txtTime.text = time.ToString();
+        audioSrc = GetComponent<AudioSource>();
 
     }
 
@@ -75,12 +79,14 @@ public class playerControl1 : MonoBehaviour
             //Salto
             if (Input.GetKeyDown(KeyCode.Space) && grounded()){
                 rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                audioSrc.PlayOneShot(sndJump);
             }
 
             //Disparo
             if (Input.GetMouseButtonDown(0)){
                 Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f , 0), Quaternion.identity);
                 anim.SetBool("isShooting",true);
+                audioSrc.PlayOneShot(sndShot);
             }
 
             // Tiempo
@@ -126,6 +132,7 @@ public class playerControl1 : MonoBehaviour
         if (other.gameObject.tag == "Item"){
             Destroy(other.gameObject);
             items++;
+            audioSrc.PlayOneShot(sndItem);
             txtItems.text = "Items: " + items;
             if (items == 5){
                 endGame = true;
@@ -146,6 +153,7 @@ public class playerControl1 : MonoBehaviour
         if (!endGame){
             lives--;
         }
+        audioSrc.PlayOneShot(sndDamage);
         sprite.color = Color.red;
         GameManager.invulnerable = true;
         Invoke("becomeVulnerable",1);
