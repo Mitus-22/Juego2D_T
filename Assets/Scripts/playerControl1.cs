@@ -120,6 +120,7 @@ public class playerControl1 : MonoBehaviour
         }                                      
     }
 
+    // Items
    void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.tag == "PowerUp"){
             Destroy(other.gameObject);
@@ -176,6 +177,10 @@ public class playerControl1 : MonoBehaviour
     void goToCredits(){
         SceneManager.LoadScene("Credits");
 
+    }
+
+    void goToLevel2(){
+        SceneManager.LoadScene("Level2");
     }
 
 }
