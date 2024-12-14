@@ -24,6 +24,7 @@ public class playerControl1 : MonoBehaviour
     [SerializeField] GameObject txtWin, txtLose;
 
     bool endGame = false;
+    bool lvl2 = false;
 
     AudioSource audioSrc;
     [SerializeField] AudioClip sndJump, sndItem, sndShot, sndDamage;
@@ -135,7 +136,13 @@ public class playerControl1 : MonoBehaviour
             items++;
             audioSrc.PlayOneShot(sndItem);
             txtItems.text = "Items: " + items;
-            if (items == 5){
+            if (items == 5 && lvl2 == false){
+                endGame = true;
+                txtWin.SetActive(true);
+                Invoke("goToLevel2", 2);
+                items = 0;
+                lvl2 = true;
+            } else if (items == 5 && lvl2 == true){
                 endGame = true;
                 txtWin.SetActive(true);
                 Invoke("goToCredits", 2);

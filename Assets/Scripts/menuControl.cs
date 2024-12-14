@@ -8,6 +8,13 @@ public class menuControl : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");
+        
+    }
+
+    public void Level2()
+    {
+        SceneManager.LoadScene("Level2");
+
     }
 
     public void ExitGame(){
