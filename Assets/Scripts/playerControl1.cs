@@ -138,7 +138,11 @@ public class playerControl1 : MonoBehaviour
             if (items == 5){
                 endGame = true;
                 txtWin.SetActive(true);
-                Invoke("goToCredits", 2);
+                if (SceneManager.GetActiveScene().name == "Level1") {
+                    Invoke("goToLevel2", 2);
+                } else if (SceneManager.GetActiveScene().name == "Level2") {
+                    Invoke("goToCredits", 2);
+                }
             }
         }
 
