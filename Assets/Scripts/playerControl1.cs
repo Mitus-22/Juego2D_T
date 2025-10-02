@@ -8,6 +8,8 @@ using System;
 public class playerControl1 : MonoBehaviour
 {
     Rigidbody2D rb;
+    private int jumpCount = 0;
+    private int maxJumps = 2;
     public int speed = 4;
     public int jump = 6;
 
@@ -76,10 +78,18 @@ public class playerControl1 : MonoBehaviour
                 anim.SetBool("isJumping",false);
             }
 
-            //Salto
-            if (Input.GetKeyDown(KeyCode.Space) && grounded()){
-                rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-                audioSrc.PlayOneShot(sndJump);
+            // Doble salto
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                if (grounded()) {
+                    jumpCount = 0; // reinicia el contador al saltar desde el suelo
+                    rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                    audioSrc.PlayOneShot(sndJump);
+                } else if (jumpCount < maxJumps - 1) {
+                    jumpCount++;
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // reinicia la velocidad vertical para un salto consistente
+                    rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                    audioSrc.PlayOneShot(sndJump);
+                }
             }
 
             //Disparo
@@ -116,6 +126,7 @@ public class playerControl1 : MonoBehaviour
         if (touch.collider ==  null){
             return false; 
         } else {
+            jumpCount = 0; // reinicia el contador de saltos al tocar el suelo
             return true;
         }                                      
     }
