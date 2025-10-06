@@ -9,8 +9,14 @@ public class menuControl : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
+    
+    public void lvl2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
 
-    public void ExitGame(){
+    public void ExitGame()
+    {
         Application.Quit();
     }
 

@@ -141,17 +141,29 @@ public class playerControl1 : MonoBehaviour
 
         }
 
-        if (other.gameObject.tag == "Item"){
+        if (other.gameObject.tag == "Live")
+        {
+            Destroy(other.gameObject);
+            lives++;
+            txtLives.text = "Lives: " + lives;
+        }
+
+        if (other.gameObject.tag == "Item")
+        {
             Destroy(other.gameObject);
             items++;
             audioSrc.PlayOneShot(sndItem);
             txtItems.text = "Items: " + items;
-            if (items == 5){
+            if (items == 5)
+            {
                 endGame = true;
                 txtWin.SetActive(true);
-                if (SceneManager.GetActiveScene().name == "Level1") {
+                if (SceneManager.GetActiveScene().name == "Level1")
+                {
                     Invoke("goToLevel2", 2);
-                } else if (SceneManager.GetActiveScene().name == "Level2") {
+                }
+                else if (SceneManager.GetActiveScene().name == "Level2")
+                {
                     Invoke("goToCredits", 2);
                 }
             }
