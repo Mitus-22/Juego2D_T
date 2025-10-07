@@ -4,7 +4,6 @@ public class ShotControl : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed = 10;
-    public int enemykilled = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,23 +18,11 @@ public class ShotControl : MonoBehaviour
         Invoke("destroyShot", 1.5f);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.tag == "Enemy"){
             Destroy(other.gameObject);
             destroyShot();
-            enemykilled++;
-
-        }
-
-        //Abrir puerta
-        if (enemykilled >= 4)
-        {
-            if (other.gameObject.tag == "Door")
-            {
-                Destroy(other.gameObject);
-            }
+            playerControl1.enemykilled++;
         }
         
     }

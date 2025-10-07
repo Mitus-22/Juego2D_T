@@ -14,6 +14,7 @@ public class playerControl1 : MonoBehaviour
     public int speed = 4;
     public int jump = 6;
     public static bool rigth = true;
+    public static int enemykilled = 0;
 
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
@@ -111,9 +112,19 @@ public class playerControl1 : MonoBehaviour
             //Disparo
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f, 0), Quaternion.identity);
-                anim.SetBool("isShooting", true);
-                audioSrc.PlayOneShot(sndShot);
+                if (Time.timeScale == 0) { }
+
+                else if (Time.timeScale == 1){
+                    Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f, 0), Quaternion.identity);
+                    anim.SetBool("isShooting", true);
+                    audioSrc.PlayOneShot(sndShot);
+                }
+            }
+
+            //Abrir puerta
+            if (enemykilled >= 4)
+            {
+                Destroy(GameObject.FindWithTag("Door"));
             }
 
             // Tiempo
