@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using UnityEditor;
 
 public class playerControl1 : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class playerControl1 : MonoBehaviour
     private int maxJumps = 2;
     public int speed = 4;
     public int jump = 6;
-
     public static bool rigth = true;
 
     [SerializeField] SpriteRenderer sprite;
@@ -24,11 +24,12 @@ public class playerControl1 : MonoBehaviour
     [SerializeField] GameObject Shot;
     [SerializeField] TMP_Text txtLives, txtItems, txtTime;
     [SerializeField] GameObject txtWin, txtLose;
+    [SerializeField] GameObject Menu;
 
     bool endGame = false;
 
     AudioSource audioSrc;
-    [SerializeField] AudioClip sndJump, sndItem, sndShot, sndDamage;
+    [SerializeField] AudioClip sndJump, sndItem, sndShot, sndDamage, sndLive;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -91,11 +92,27 @@ public class playerControl1 : MonoBehaviour
                     audioSrc.PlayOneShot(sndJump);
                 }
             }
+            
+            //Menu de pausa
+            if (Input.GetKeyDown(KeyCode.Escape)){
+                if (SceneManager.GetActiveScene().name == "MainMenu") {
+                }
+
+                else if (Time.timeScale == 1) {
+                    Time.timeScale = 0;
+                    Menu.SetActive(true);
+                }
+                else {
+                    Time.timeScale = 1;
+                    Menu.SetActive(false);
+                }
+            }
 
             //Disparo
-            if (Input.GetMouseButtonDown(0)){
-                Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f , 0), Quaternion.identity);
-                anim.SetBool("isShooting",true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f, 0), Quaternion.identity);
+                anim.SetBool("isShooting", true);
                 audioSrc.PlayOneShot(sndShot);
             }
 
@@ -116,6 +133,7 @@ public class playerControl1 : MonoBehaviour
         } else {
             rb.linearVelocity = Vector2.zero;
         }
+        
     }
 
     // Tocando el suelo o no
@@ -145,6 +163,7 @@ public class playerControl1 : MonoBehaviour
         {
             Destroy(other.gameObject);
             lives++;
+            audioSrc.PlayOneShot(sndLive);
             txtLives.text = "Lives: " + lives;
         }
 
