@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 using UnityEditor;
+using JetBrains.Annotations;
+using Unity.Mathematics;
 
 public class playerControl1 : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class playerControl1 : MonoBehaviour
 
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
-    [SerializeField] int lives = 3;
+    public static int lives = 3;
     [SerializeField] int items = 0;
     [SerializeField] float time = 180;
 
@@ -124,8 +126,6 @@ public class playerControl1 : MonoBehaviour
                     anim.SetBool("isShooting", true);
                     audioSrc.PlayOneShot(sndShot);
             }
-
-            //Abrir puerta lvl1
             
 
             //Abrir puerta lvl2
@@ -180,7 +180,7 @@ public class playerControl1 : MonoBehaviour
         if (other.gameObject.tag == "Live")
         {
             Destroy(other.gameObject);
-            lives++;
+            lives = math.clamp(lives + 1, 0, 4);
             audioSrc.PlayOneShot(sndLive);
             txtLives.text = "Lives: " + lives;
         }
@@ -235,11 +235,13 @@ public class playerControl1 : MonoBehaviour
 
     void goToMenu(){
         SceneManager.LoadScene("MainMenu");
+        lives = 3;
 
     }
 
     void goToCredits(){
         SceneManager.LoadScene("Credits");
+        lives = 3;
 
     }
 

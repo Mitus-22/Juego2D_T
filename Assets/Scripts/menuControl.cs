@@ -26,7 +26,7 @@ public class menuControl : MonoBehaviour
     public void goToMenu()
     {
         SceneManager.LoadScene("MainMenu");
-
+        playerControl1.lives = 3;
     }
 
     public void continueGame()
