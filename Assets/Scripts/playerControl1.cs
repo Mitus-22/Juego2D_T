@@ -15,6 +15,7 @@ public class playerControl1 : MonoBehaviour
     public int jump = 6;
     public static bool rigth = true;
     public static int enemykilled = 0;
+    public static int doorHp = 3;
 
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
@@ -81,7 +82,7 @@ public class playerControl1 : MonoBehaviour
             }
 
             // Doble salto
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Time.timeScale == 1 && Input.GetKeyDown(KeyCode.Space)) {
                 if (grounded()) {
                     jumpCount = 0; // reinicia el contador al saltar desde el suelo
                     rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
@@ -93,36 +94,42 @@ public class playerControl1 : MonoBehaviour
                     audioSrc.PlayOneShot(sndJump);
                 }
             }
-            
-            //Menu de pausa
-            if (Input.GetKeyDown(KeyCode.Escape)){
-                if (SceneManager.GetActiveScene().name == "MainMenu") {
-                }
 
-                else if (Time.timeScale == 1) {
+            //Menu de pausa
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (SceneManager.GetActiveScene().name == "MainMenu")
+                { }
+
+                else if (Time.timeScale == 1)
+                {
                     Time.timeScale = 0;
                     Menu.SetActive(true);
+
                 }
-                else {
+                else
+                {
                     Time.timeScale = 1;
                     Menu.SetActive(false);
                 }
+                
+            
+
             }
 
             //Disparo
-            if (Input.GetMouseButtonDown(0))
+            if (Time.timeScale == 1 && Input.GetMouseButtonDown(0))
             {
-                if (Time.timeScale == 0) { }
-
-                else if (Time.timeScale == 1){
                     Instantiate(Shot, new Vector3(transform.position.x, transform.position.y + 1.7f, 0), Quaternion.identity);
                     anim.SetBool("isShooting", true);
                     audioSrc.PlayOneShot(sndShot);
-                }
             }
 
-            //Abrir puerta
-            if (enemykilled >= 4)
+            //Abrir puerta lvl1
+            
+
+            //Abrir puerta lvl2
+            if (SceneManager.GetActiveScene().name == "Level2" && enemykilled >= 4)
             {
                 Destroy(GameObject.FindWithTag("Door"));
             }

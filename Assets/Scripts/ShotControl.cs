@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShotControl : MonoBehaviour
 {
@@ -18,11 +19,23 @@ public class ShotControl : MonoBehaviour
         Invoke("destroyShot", 1.5f);
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if (other.gameObject.tag == "Enemy"){
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy" && SceneManager.GetActiveScene().name == "Level2")
+        {
             Destroy(other.gameObject);
             destroyShot();
             playerControl1.enemykilled++;
+        }
+
+        else if (other.gameObject.tag == "Door")
+        {
+            destroyShot();
+            playerControl1.doorHp--;
+            if (playerControl1.doorHp <= 0)
+            {
+                Destroy(other.gameObject);
+            }
         }
         
     }
